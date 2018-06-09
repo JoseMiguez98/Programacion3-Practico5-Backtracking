@@ -19,9 +19,9 @@ public class TableroMagico {
 	public int[][] getMatriz(){
 		return this.mat;
 	}
-	
-	
-	
+
+
+
 	public boolean getSolucion(Integer _k, Integer _s) {
 		if(_s != 0) {
 			if(_k > (n*n)) {
@@ -35,28 +35,26 @@ public class TableroMagico {
 		return false;
 	}
 
-private boolean getSolucion(Integer _k, Integer _s, int _c, boolean[] _u) {
+	private boolean getSolucion(Integer _k, Integer _s, int _c, boolean[] _u) {
 		if(_c == (n*n)) {
 			return this.solucion(_s);
 		}
 		else {
-			for(int i = _c ; i<(n*n) ; i++) {
-				for(int v = 0 ; v<=_k ; v++) {
-					if(!_u[v]) {
-						_u[v] = true;
-						this.mat[i/n][i%n] = v;
-						if(getSolucion(_k, _s, i+1, _u)) {
-							return true;
-						}
-						_u[v]  = false;
-						this.mat[i/n][i%n] = 0;
+			for(int v = 0 ; v<=_k ; v++) {
+				if(!_u[v]) {
+					_u[v] = true;
+					this.mat[_c/n][_c%n] = v;
+					if(getSolucion(_k, _s, _c+1, _u)) {
+						return true;
 					}
+					_u[v]  = false;
+					this.mat[_c/n][_c%n] = 0;
 				}
 			}
 		}
 		return false;
 	}
-	
+
 	private boolean solucion(Integer _s) {
 		Integer suma;
 		for(int i = 0 ; i<n ; i++) {
@@ -68,7 +66,7 @@ private boolean getSolucion(Integer _k, Integer _s, int _c, boolean[] _u) {
 				return false;
 			}
 		}
-		
+
 		for(int i = 0 ; i<n ; i++) {
 			suma = 0;
 			for(int j = 0 ; j<n ; j++) {
@@ -78,17 +76,17 @@ private boolean getSolucion(Integer _k, Integer _s, int _c, boolean[] _u) {
 				return false;
 			}
 		}
-		
+
 		return true;
 	}
-	
-//	private boolean solucion(Integer[] _sf, Integer[] _sc, Integer _s) {
-//		for(int i = 0; i<n ; i++) {
-//			if(_sf[i] != _s || _sc[i] != _s) {
-//				return false;
-//			}
-//		}
-//		
-//		return true;
-//	}
+
+	//	private boolean solucion(Integer[] _sf, Integer[] _sc, Integer _s) {
+	//		for(int i = 0; i<n ; i++) {
+	//			if(_sf[i] != _s || _sc[i] != _s) {
+	//				return false;
+	//			}
+	//		}
+	//		
+	//		return true;
+	//	}
 }
